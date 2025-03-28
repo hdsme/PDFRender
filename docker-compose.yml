@@ -1,0 +1,21 @@
+# Do not modify the contents of this file
+networks:
+  swi:
+    name: swi
+    driver: bridge
+
+version: '3.9'
+services:
+  pdf-render:
+    image: pdf-render
+    container_name: pdf-render
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8089:80"
+    networks:
+      - swi
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
